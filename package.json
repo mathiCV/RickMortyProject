@@ -13,7 +13,8 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "dependencies": {
-    "vue": "beta"
+    "vue": "beta",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
