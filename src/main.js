@@ -1,15 +1,12 @@
 
 import {createStore} from 'vuex'
-import { createApp } from 'vue'
+import {createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
-
-export default createStore({
+const store = createStore({
     state:{
         characters: [],
         charactersFilter: []
-
     },
     mutations:{
         setCharacters(state,payload){
@@ -22,23 +19,18 @@ export default createStore({
     actions: {
         async getCharacters({commit}){
             try{
-                const response = await fetch('https://rickandmorty.com/api/character')
+                const response = await fetch('https://rickandmortyapi.com/api/character')
                 const data = await response.json()
-                console.log(data)
+                commit('setCharacters', data.results)
+                commit('setCharactersFilter', data.results)
             }
             catch(error){
                 console.error(error)
             }
         }
-
-
     },
-    
     modules:{
-
     }
-
 })
-
-
+createApp(App).use(store).mount('#app')
 
