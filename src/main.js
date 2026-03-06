@@ -2,6 +2,7 @@
 import {createStore} from 'vuex'
 import {createApp } from 'vue'
 import App from './App.vue'
+import FilterByStatus from './components/FilterByStatus.vue'
 
 const store = createStore({
     state:{
@@ -27,6 +28,18 @@ const store = createStore({
             catch(error){
                 console.error(error)
             }
+        },
+        filterByStatus({commit, state}, status){
+            const results = state.characters.filter((character) => {
+                return character.status.includes(status)    
+            })
+            commit('setCharactersFilter', results)
+        },
+        filterByName({commit, state}, name){
+            const result = state.characters.filter((character) => {
+                return character.name.toLowerCase().includes(name.toLowerCase());
+            })
+            commit('setCharactersFilter', result);
         }
     },
     modules:{

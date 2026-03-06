@@ -1,9 +1,13 @@
 <script >
+  import FilterByStatus from './components/FilterByStatus.vue';
   import ListCharacters from './components/ListCharacters.vue';
+  import FilterByName from './components/FilterByName.vue';
   export default {
     name : 'App',
     components : {
-      ListCharacters
+      ListCharacters,
+      FilterByStatus,
+      FilterByName
     }
   }
 </script>
@@ -11,6 +15,8 @@
 <template>
   <div class="container">
     <h1>Rick and Morty Characters</h1>
+    <FilterByStatus/>
+    <FilterByName/>
     <ListCharacters/>
   </div>
 </template>
@@ -19,7 +25,7 @@
   :root{
     --background-body: #24282F;
     --background-card: #3c3e44;
-    --text-white: #FFFFFFF;
+    --text-white: white;
     --text-gray: #c0c0c0;
     --text-orange: #FF9800;
   }
