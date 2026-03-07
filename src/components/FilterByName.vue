@@ -81,7 +81,10 @@
         min-height: 56px; 
         border: 2px solid #39FF14; 
         pointer-events: none; 
-        overflow: visible; 
+        overflow-x: auto; // Permite scroll horizontal
+        &::-webkit-scrollbar {
+            display: none;
+        }
         z-index: 1;
         .char{
             font-family: monospace;
@@ -96,7 +99,6 @@
     .blast-leave-active {
         animation: rayo-desintegrador 0.2s ease-out forwards;
         position: absolute; 
-
         z-index: 10;
     }
 

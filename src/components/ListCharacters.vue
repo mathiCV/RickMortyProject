@@ -11,11 +11,28 @@
             const characters = computed(()=>{
                 return store.state.charactersFilter
             })
+            let currentDialog = null;
+            const playCharactersDialog = (name) =>{
+                if (currentDialog) {
+                    currentDialog.pause();
+                    currentDialog.currentTime = 0; // Reinicia el audio al principio
+                }
+                const cleanName = name.toLowerCase().trim().replace(/\s+/g, '-');
+                const audioPath = `/characterDialogs/${cleanName}.mp3`;
+                const audio = new Audio(audioPath);
+                currentDialog = audio;
+                audio.play().catch(err => {
+                    console.warn(`⚠️ No se encontró audio para: ${cleanName}.mp3 en /public/characterDialogs/`);
+                    currentDialog = null;
+                });
+            }
+
             onMounted(() =>{
                 store.dispatch('getCharacters')
             })
             return {
-                characters
+                characters,
+                playCharactersDialog
             }
         }
     }
@@ -25,7 +42,7 @@
 <template>
     <section>
         <div class="characters">
-            <div class="characters__item" v-for="character in characters" :key="character.id">
+            <div class="characters__item" v-for="character in characters" :key="character.id" @click="playCharactersDialog(character.name)">
                 <CardCharacter :character="character"/>
             </div>
         </div>

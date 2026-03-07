@@ -20,16 +20,16 @@
 
 <template>
     <div class="filter">
-        <div class="item" :class="{ 'active': statusActivo === '' }" @click="filter('')">
+        <div class="item" :class="{ 'all': statusActivo === '' }" @click="filter('')">
             All
         </div>
-        <div class="item" :class="{ 'active': statusActivo === 'Alive' }" @click="filter('Alive')">
+        <div class="item" :class="{ 'alive': statusActivo === 'Alive' }" @click="filter('Alive')">
             Alive
         </div>
-        <div class="item" :class="{ 'active': statusActivo === 'Dead' }" @click="filter('Dead')">
+        <div class="item" :class="{ 'dead': statusActivo === 'Dead' }" @click="filter('Dead')">
             Dead
         </div>
-        <div class="item" :class="{ 'active': statusActivo === 'unknown' }" @click="filter('unknown')">
+        <div class="item" :class="{ 'unknown': statusActivo === 'unknown' }" @click="filter('unknown')">
             Unknown
         </div>
     </div>
@@ -51,15 +51,29 @@
             transition: background-color 0.4s ease-in;
             cursor: pointer;
             &:hover{
-                color: greenyellow;
+                font-weight: bold;
             }
-            &.active{
-                background-color: gray;
-                color: greenyellow;
+            &.all{
+                background-color: rgb(144, 134, 134);
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+            }
+            &.alive{
+                background-color: rgb(146, 204, 58);
+                color: rgb(255, 255, 255);
+                font-weight: bold;
+            }
+            &.dead{
+                background-color: rgb(215, 83, 83);
+                color: rgb(255, 255, 255);
+                font-weight: bold;
+            }
+            &.unknown{
+                background-color: rgb(225, 218, 218);
+                color: rgb(70, 69, 69);
                 font-weight: bold;
             }
         }
-
     }
 </style>
 
